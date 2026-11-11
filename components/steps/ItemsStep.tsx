@@ -64,10 +64,10 @@ export function ItemsStep({ data, setItems, patchMeta }: StepProps) {
           {data.items.map((item, index) => (
             <div
               key={item.id}
-              className="rounded-2xl border border-slate-200 bg-white p-3.5 transition hover:border-slate-300"
+              className="rounded-2xl border border-line bg-surface p-3.5 transition hover:border-line-strong"
             >
               <div className="flex items-center gap-2">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-[11px] font-bold text-brand-600">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-brand-soft text-[11px] font-bold text-brand-ink">
                   {formatNumber(index + 1)}
                 </span>
                 <TextInput
@@ -80,7 +80,7 @@ export function ItemsStep({ data, setItems, patchMeta }: StepProps) {
                 <button
                   type="button"
                   onClick={() => removeItem(item.id)}
-                  className="btn btn-ghost btn-icon text-slate-400 hover:text-rose-500"
+                  className="btn btn-ghost btn-icon text-muted hover:text-rose-500 dark:hover:text-rose-400"
                   aria-label={`حذف ردیف ${index + 1}`}
                 >
                   <TrashIcon className="h-4 w-4" />
@@ -134,7 +134,7 @@ export function ItemsStep({ data, setItems, patchMeta }: StepProps) {
 
                 <div className="col-span-1 sm:col-span-2">
                   <span className="label text-[11px]">جمع ردیف</span>
-                  <div className="rounded-xl bg-slate-50 px-2.5 py-2.5 text-center text-[12px] font-bold tabular-nums text-slate-700">
+                  <div className="rounded-xl bg-surface-2 px-2.5 py-2.5 text-center text-[12px] font-bold tabular-nums text-ink-soft">
                     {formatNumber(itemAmount(item))}
                   </div>
                 </div>
@@ -146,7 +146,7 @@ export function ItemsStep({ data, setItems, patchMeta }: StepProps) {
         <button
           type="button"
           onClick={addItem}
-          className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-dashed border-slate-300 bg-slate-50/60 py-3 text-[13px] font-medium text-slate-500 transition hover:border-brand-300 hover:bg-brand-50/60 hover:text-brand-600"
+          className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-dashed border-line-strong bg-surface-2/60 py-3 text-[13px] font-medium text-muted transition hover:border-brand-300 hover:bg-brand-soft/60 hover:text-brand-ink"
         >
           <PlusIcon className="h-4 w-4" />
           افزودن ردیف جدید
@@ -185,30 +185,30 @@ export function ItemsStep({ data, setItems, patchMeta }: StepProps) {
         </Section>
 
         <section className="card p-5 sm:p-6">
-          <h2 className="text-[15px] font-bold text-slate-800">جمع‌بندی فاکتور</h2>
-          <p className="mt-0.5 text-xs text-slate-400">
+          <h2 className="text-[15px] font-bold text-ink">جمع‌بندی فاکتور</h2>
+          <p className="mt-0.5 text-xs text-muted">
             {formatNumber(totals.itemCount)} ردیف، {formatNumber(totals.quantityTotal)} واحد کالا
           </p>
 
           <dl className="mt-4 space-y-2 text-[13px]">
             <div className="flex items-center justify-between">
-              <dt className="text-slate-500">جمع کل</dt>
-              <dd className="font-semibold tabular-nums text-slate-700">
+              <dt className="text-muted">جمع کل</dt>
+              <dd className="font-semibold tabular-nums text-ink-soft">
                 {formatNumber(totals.subtotal)}
               </dd>
             </div>
             <div className="flex items-center justify-between">
-              <dt className="text-slate-500">تخفیف</dt>
-              <dd className="font-semibold tabular-nums text-rose-500">
+              <dt className="text-muted">تخفیف</dt>
+              <dd className="font-semibold tabular-nums text-rose-500 dark:text-rose-400">
                 {totals.discount > 0 ? `− ${formatNumber(totals.discount)}` : "—"}
               </dd>
             </div>
             {data.meta.taxEnabled ? (
               <div className="flex items-center justify-between">
-                <dt className="text-slate-500">
+                <dt className="text-muted">
                   مالیات ({formatNumber(data.meta.taxRate)}٪)
                 </dt>
-                <dd className="font-semibold tabular-nums text-slate-700">
+                <dd className="font-semibold tabular-nums text-ink-soft">
                   {formatNumber(totals.tax)}
                 </dd>
               </div>
@@ -223,9 +223,9 @@ export function ItemsStep({ data, setItems, patchMeta }: StepProps) {
             </span>
           </div>
 
-          <div className="mt-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
-            <div className="text-[10px] font-bold text-slate-400">مبلغ به حروف</div>
-            <div className="mt-1 text-[11.5px] leading-relaxed text-slate-600">
+          <div className="mt-3 rounded-xl border border-line bg-surface-2 p-3">
+            <div className="text-[10px] font-bold text-muted">مبلغ به حروف</div>
+            <div className="mt-1 text-[11.5px] leading-relaxed text-ink-soft">
               {numberToPersianWords(totals.total)} {currency}
             </div>
           </div>

@@ -2,6 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------------- توکن‌های تم ------------------------------- */
+
+:root {
+  color-scheme: light;
+
+  --page: #f6f7fb;
+  --glow-1: rgba(74, 92, 248, 0.1);
+  --glow-2: rgba(192, 208, 255, 0.32);
+
+  --surface-rgb: 255 255 255;
+  --surface-2-rgb: 248 250 252;
+  --surface-3-rgb: 241 245 249;
+  --raised-rgb: 255 255 255;
+  --field-rgb: 255 255 255;
+  --line-rgb: 226 232 240;
+  --line-strong-rgb: 203 213 225;
+
+  --ink-rgb: 15 23 42;
+  --ink-soft-rgb: 71 85 105;
+  --muted-rgb: 100 116 139;
+
+  --brand-soft-rgb: 238 244 255;
+  --brand-ink-rgb: 56 64 237;
+  --brand-strong-rgb: 45 49 209;
+
+  --shadow-card:
+    0 1px 2px rgba(15, 23, 42, 0.04), 0 14px 34px -22px rgba(15, 23, 42, 0.3);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --page: #050a14;
+  --glow-1: rgba(74, 92, 248, 0.22);
+  --glow-2: rgba(36, 62, 122, 0.45);
+
+  --surface-rgb: 11 21 38;
+  --surface-2-rgb: 15 29 51;
+  --surface-3-rgb: 20 36 61;
+  --raised-rgb: 34 52 86;
+  --field-rgb: 8 17 31;
+  --line-rgb: 30 47 77;
+  --line-strong-rgb: 44 64 102;
+
+  --ink-rgb: 233 238 251;
+  --ink-soft-rgb: 185 199 221;
+  --muted-rgb: 141 159 188;
+
+  --brand-soft-rgb: 22 32 61;
+  --brand-ink-rgb: 169 184 255;
+  --brand-strong-rgb: 201 212 255;
+
+  --shadow-card:
+    0 1px 2px rgba(0, 0, 0, 0.5), 0 18px 42px -26px rgba(0, 0, 0, 0.9);
+}
+
 /* ------------------------------- پایه‌ها -------------------------------- */
 
 @layer base {
@@ -12,14 +68,17 @@
   body {
     font-family:
       "Vazirmatn Variable", "Vazirmatn", Tahoma, "Segoe UI", system-ui, sans-serif;
-    background-color: #f6f7fb;
+    background-color: var(--page);
     background-image:
-      radial-gradient(60rem 38rem at 100% -12%, rgba(74, 92, 248, 0.1), transparent 62%),
-      radial-gradient(48rem 30rem at 0% 0%, rgba(192, 208, 255, 0.32), transparent 58%);
+      radial-gradient(60rem 38rem at 100% -12%, var(--glow-1), transparent 62%),
+      radial-gradient(48rem 30rem at 0% 0%, var(--glow-2), transparent 58%);
     background-repeat: no-repeat;
-    color: #1e293b;
+    color: rgb(var(--ink-rgb));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease;
   }
 
   input,
@@ -30,8 +89,18 @@
   }
 
   ::selection {
-    background: #c0d0ff;
-    color: #262c85;
+    background: rgb(var(--brand-soft-rgb));
+    color: rgb(var(--brand-ink-rgb));
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0.55;
+    cursor: pointer;
+  }
+
+  .dark input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.65;
   }
 }
 
@@ -40,35 +109,36 @@
 .field {
   width: 100%;
   border-radius: 0.75rem;
-  border: 1px solid #e2e8f0;
-  background: #ffffff;
+  border: 1px solid rgb(var(--line-rgb));
+  background: rgb(var(--field-rgb));
   padding: 0.6rem 0.85rem;
   font-size: 0.875rem;
   line-height: 1.6;
-  color: #1e293b;
+  color: rgb(var(--ink-rgb));
   outline: none;
   transition:
     border-color 0.15s ease,
     box-shadow 0.15s ease,
-    background-color 0.15s ease;
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
 
 .field::placeholder {
-  color: #a3aec0;
+  color: rgb(var(--muted-rgb) / 0.72);
 }
 
 .field:hover {
-  border-color: #cbd5e1;
+  border-color: rgb(var(--line-strong-rgb));
 }
 
 .field:focus {
-  border-color: #96aeff;
-  box-shadow: 0 0 0 4px rgba(74, 92, 248, 0.12);
+  border-color: rgb(var(--brand-ink-rgb) / 0.65);
+  box-shadow: 0 0 0 4px rgb(var(--brand-ink-rgb) / 0.12);
 }
 
 .field:disabled {
-  background: #f8fafc;
-  color: #94a3b8;
+  background: rgb(var(--surface-2-rgb));
+  color: rgb(var(--muted-rgb));
 }
 
 .label {
@@ -76,23 +146,24 @@
   margin-bottom: 0.4rem;
   font-size: 13px;
   font-weight: 500;
-  color: #475569;
+  color: rgb(var(--ink-soft-rgb));
 }
 
 .hint {
   margin-top: 0.35rem;
   font-size: 11px;
   line-height: 1.6;
-  color: #94a3b8;
+  color: rgb(var(--muted-rgb));
 }
 
 .card {
   border-radius: 1rem;
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  background: #ffffff;
-  box-shadow:
-    0 1px 2px rgba(15, 23, 42, 0.04),
-    0 14px 34px -22px rgba(15, 23, 42, 0.3);
+  border: 1px solid rgb(var(--line-rgb));
+  background: rgb(var(--surface-rgb));
+  box-shadow: var(--shadow-card);
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .btn {
@@ -115,7 +186,7 @@
 
 .btn:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 4px rgba(74, 92, 248, 0.2);
+  box-shadow: 0 0 0 4px rgb(var(--brand-ink-rgb) / 0.22);
 }
 
 .btn:disabled {
@@ -133,29 +204,38 @@
   background: #2d31d1;
 }
 
+.dark .btn-primary {
+  background: #4a5cf8;
+  box-shadow: 0 12px 24px -14px rgba(74, 92, 248, 0.95);
+}
+
+.dark .btn-primary:hover:not(:disabled) {
+  background: #5b6cff;
+}
+
 .btn-ghost {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  color: #475569;
+  background: rgb(var(--surface-rgb));
+  border: 1px solid rgb(var(--line-rgb));
+  color: rgb(var(--ink-soft-rgb));
 }
 
 .btn-ghost:hover:not(:disabled) {
-  background: #f8fafc;
-  border-color: #cbd5e1;
-  color: #1e293b;
+  background: rgb(var(--surface-2-rgb));
+  border-color: rgb(var(--line-strong-rgb));
+  color: rgb(var(--ink-rgb));
 }
 
 .btn-soft {
-  background: #eef4ff;
-  color: #2d31d1;
+  background: rgb(var(--brand-soft-rgb));
+  color: rgb(var(--brand-ink-rgb));
 }
 
 .btn-soft:hover:not(:disabled) {
-  background: #dce6ff;
+  background: rgb(var(--brand-soft-rgb) / 0.78);
 }
 
 .btn-danger {
-  background: #ffffff;
+  background: rgb(var(--surface-rgb));
   border: 1px solid #fecdd3;
   color: #e11d48;
 }
@@ -164,9 +244,38 @@
   background: #fff1f2;
 }
 
+.dark .btn-danger {
+  border-color: rgba(159, 18, 57, 0.65);
+  color: #fb7185;
+}
+
+.dark .btn-danger:hover:not(:disabled) {
+  background: rgba(159, 18, 57, 0.16);
+}
+
 .btn-icon {
   padding: 0.5rem;
   border-radius: 0.6rem;
+}
+
+/* دکمه‌های انتخاب تم؛ حالت فعال با کلاس dark روی html تعیین می‌شود */
+.theme-option {
+  color: rgb(var(--muted-rgb));
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.theme-option:hover {
+  color: rgb(var(--ink-rgb));
+}
+
+html:not(.dark) .theme-option[data-theme-option="light"],
+html.dark .theme-option[data-theme-option="dark"] {
+  background: rgb(var(--raised-rgb));
+  color: rgb(var(--brand-ink-rgb));
+  box-shadow: 0 1px 2px rgba(2, 8, 20, 0.18);
 }
 
 /* ------------------------------ جدول اقلام ------------------------------ */
@@ -215,6 +324,7 @@
   background: #ffffff;
   color: #1e293b;
   direction: rtl;
+  color-scheme: light;
   font-family:
     "Vazirmatn Variable", "Vazirmatn", Tahoma, "Segoe UI", system-ui, sans-serif;
   font-size: 10pt;

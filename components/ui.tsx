@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import {
   useEffect,
@@ -122,7 +122,7 @@ export function NumericInput({
           className={`field text-left tabular-nums ${suffix ? "pl-3 pr-16" : ""}`}
         />
         {suffix ? (
-          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pl-2 pr-3 text-[11px] font-medium text-slate-400">
+          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pl-2 pr-3 text-[11px] font-medium text-muted">
             {suffix}
           </span>
         ) : null}
@@ -179,17 +179,17 @@ export function Switch({
       role="switch"
       aria-checked={checked}
       onClick={() => onChange(!checked)}
-      className="flex w-full items-center justify-between gap-4 rounded-xl border border-slate-200 bg-white px-3.5 py-3 text-right transition hover:border-slate-300"
+      className="flex w-full items-center justify-between gap-4 rounded-xl border border-line bg-surface px-3.5 py-3 text-right transition hover:border-line-strong"
     >
       <span className="min-w-0">
-        <span className="block text-sm font-medium text-slate-700">{label}</span>
+        <span className="block text-sm font-medium text-ink-soft">{label}</span>
         {description ? (
-          <span className="mt-0.5 block text-[11px] leading-relaxed text-slate-400">{description}</span>
+          <span className="mt-0.5 block text-[11px] leading-relaxed text-muted">{description}</span>
         ) : null}
       </span>
       <span
         className={`relative h-6 w-11 shrink-0 rounded-full transition ${
-          checked ? "bg-brand-600" : "bg-slate-300"
+          checked ? "bg-brand-600" : "bg-line-strong"
         }`}
       >
         <span
@@ -218,7 +218,7 @@ export function SegmentedControl<T extends string>({
   return (
     <div>
       {label ? <span className="label">{label}</span> : null}
-      <div className="inline-flex rounded-xl border border-slate-200 bg-slate-50 p-1">
+      <div className="inline-flex rounded-xl border border-line bg-surface-2 p-1">
         {options.map((option) => (
           <button
             key={option}
@@ -226,8 +226,8 @@ export function SegmentedControl<T extends string>({
             onClick={() => onChange(option)}
             className={`rounded-lg px-3.5 py-1.5 text-[13px] font-medium transition ${
               option === value
-                ? "bg-white text-brand-700 shadow-sm"
-                : "text-slate-500 hover:text-slate-700"
+                ? "bg-raised text-brand-strong shadow-sm"
+                : "text-muted hover:text-ink-soft"
             }`}
           >
             {option}
@@ -260,14 +260,14 @@ export function Section({
       <header className="mb-5 flex flex-wrap items-start justify-between gap-3">
         <div className="flex items-start gap-3">
           {icon ? (
-            <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+            <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-soft text-brand-ink">
               {icon}
             </span>
           ) : null}
           <div>
-            <h2 className="text-[15px] font-bold text-slate-800">{title}</h2>
+            <h2 className="text-[15px] font-bold text-ink">{title}</h2>
             {description ? (
-              <p className="mt-0.5 text-xs leading-relaxed text-slate-400">{description}</p>
+              <p className="mt-0.5 text-xs leading-relaxed text-muted">{description}</p>
             ) : null}
           </div>
         </div>

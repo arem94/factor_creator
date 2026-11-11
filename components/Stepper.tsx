@@ -35,8 +35,8 @@ export function Stepper({
                   completed
                     ? "bg-brand-600 text-white"
                     : active
-                      ? "bg-brand-50 text-brand-700 ring-2 ring-brand-200"
-                      : "bg-slate-100 text-slate-400"
+                      ? "bg-brand-soft text-brand-strong ring-2 ring-brand-400/40"
+                      : "bg-surface-3 text-muted"
                 }`}
               >
                 {completed ? <CheckIcon className="h-4 w-4" /> : formatNumber(index + 1)}
@@ -44,12 +44,12 @@ export function Stepper({
               <span className="hidden min-w-0 text-right sm:block">
                 <span
                   className={`block text-[12.5px] font-semibold ${
-                    active ? "text-slate-900" : completed ? "text-slate-600" : "text-slate-400"
+                    active ? "text-ink" : completed ? "text-ink-soft" : "text-muted"
                   }`}
                 >
                   {step.title}
                 </span>
-                <span className="block truncate text-[10.5px] text-slate-400">
+                <span className="block truncate text-[10.5px] text-muted">
                   {step.description}
                 </span>
               </span>
@@ -75,7 +75,7 @@ export function Stepper({
               {index < steps.length - 1 ? (
                 <span
                   className={`h-px flex-1 rounded-full ${
-                    index < current ? "bg-brand-300" : "bg-slate-200"
+                    index < current ? "bg-brand-300" : "bg-line"
                   }`}
                 />
               ) : null}
@@ -84,7 +84,7 @@ export function Stepper({
         })}
       </ol>
 
-      <p className="mt-2.5 text-[11px] text-slate-400 sm:hidden">
+      <p className="mt-2.5 text-[11px] text-muted sm:hidden">
         مرحله {formatNumber(current + 1)} از {formatNumber(steps.length)} — {steps[current].title}
       </p>
     </div>

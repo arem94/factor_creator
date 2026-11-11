@@ -81,14 +81,14 @@ export function FooterStep({ data, patchFooter }: StepProps) {
         </div>
 
         {footer.signaturesEnabled ? (
-          <div className="mt-4 grid gap-6 rounded-2xl border border-slate-200 bg-slate-50/70 p-4 sm:grid-cols-2">
+          <div className="mt-4 grid gap-6 rounded-2xl border border-line bg-surface-2/70 p-4 sm:grid-cols-2">
             {[
               { label: footer.signatureSeller || "مهر و امضای فروشنده", name: data.seller.name },
               { label: footer.signatureBuyer || "مهر و امضای خریدار", name: data.buyer.name },
             ].map((signature, index) => (
               <div key={index}>
-                <div className="text-[11px] font-medium text-slate-500">{signature.label}</div>
-                <div className="mt-1.5 flex h-20 items-end justify-center rounded-lg border border-dashed border-slate-300 bg-white pb-1.5 text-[10px] text-slate-300">
+                <div className="text-[11px] font-medium text-muted">{signature.label}</div>
+                <div className="mt-1.5 flex h-20 items-end justify-center rounded-lg border border-dashed border-line-strong bg-surface pb-1.5 text-[10px] text-muted">
                   {signature.name || "—"}
                 </div>
               </div>

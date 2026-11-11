@@ -58,8 +58,8 @@ export function CompanyStep({ data, patchSeller, patchBuyer, patchMeta }: StepPr
               }}
               className={`flex h-[132px] w-[132px] flex-col items-center justify-center overflow-hidden rounded-2xl border-2 border-dashed p-2 transition ${
                 dragging
-                  ? "border-brand-400 bg-brand-50"
-                  : "border-slate-200 bg-slate-50/70 hover:border-slate-300"
+                  ? "border-brand-400 bg-brand-soft"
+                  : "border-line bg-surface-2/70 hover:border-line-strong"
               }`}
             >
               {data.seller.logo ? (
@@ -71,8 +71,8 @@ export function CompanyStep({ data, patchSeller, patchBuyer, patchMeta }: StepPr
                 />
               ) : (
                 <div className="flex flex-col items-center gap-1.5 text-center">
-                  <ImageIcon className="h-6 w-6 text-slate-300" />
-                  <span className="text-[11px] leading-tight text-slate-400">
+                  <ImageIcon className="h-6 w-6 text-muted" />
+                  <span className="text-[11px] leading-tight text-muted">
                     {logoBusy ? "در حال بارگذاری…" : "لوگو را اینجا رها کنید"}
                   </span>
                 </div>
@@ -111,11 +111,11 @@ export function CompanyStep({ data, patchSeller, patchBuyer, patchMeta }: StepPr
               ) : null}
             </div>
 
-            <p className="mt-2 w-[132px] text-[10px] leading-relaxed text-slate-400">
+            <p className="mt-2 w-[132px] text-[10px] leading-relaxed text-muted">
               PNG یا JPG، حداکثر ۳ مگابایت
             </p>
             {logoError ? (
-              <p className="mt-1 w-[140px] text-[10px] font-medium leading-relaxed text-rose-500">
+              <p className="mt-1 w-[140px] text-[10px] font-medium leading-relaxed text-rose-500 dark:text-rose-400">
                 {logoError}
               </p>
             ) : null}

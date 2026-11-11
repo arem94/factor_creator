@@ -14,6 +14,7 @@ import { CompanyStep } from "@/components/steps/CompanyStep";
 import { ExportStep } from "@/components/steps/ExportStep";
 import { FooterStep } from "@/components/steps/FooterStep";
 import { ItemsStep } from "@/components/steps/ItemsStep";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { formatNumber } from "@/lib/format";
 import {
   calcTotals,
@@ -134,9 +135,9 @@ export default function HomePage() {
   if (!data) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
+        <div className="flex items-center gap-3 rounded-2xl border border-line bg-surface px-5 py-4 shadow-sm">
           <SpinnerIcon className="h-5 w-5 text-brand-500" />
-          <span className="text-[13px] text-slate-500">در حال آماده‌سازی فاکتور…</span>
+          <span className="text-[13px] text-muted">در حال آماده‌سازی فاکتور…</span>
         </div>
       </div>
     );
@@ -154,23 +155,36 @@ export default function HomePage() {
   return (
     <>
       <div className="app-shell min-h-screen">
-        <header className="sticky top-0 z-30 border-b border-slate-200/70 bg-white/80 backdrop-blur">
+        <header className="sticky top-0 z-30 border-b border-line/70 bg-surface/80 backdrop-blur">
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
             <div className="flex min-w-0 items-center gap-3">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-lg shadow-brand-600/25">
                 <ReceiptIcon className="h-5 w-5" />
               </span>
               <div className="min-w-0">
-                <div className="flex items-center ">
-                  <h1 className="text-[15px] font-extrabold text-slate-900">فاکتورساز</h1>
-                  <img
-                    src="/images/logo.svg"
-                    alt="Logo"
-                    width={90}
-                    height={24}
-                  />
+                <div className="flex min-w-0 items-center gap-2">
+                  <h1 className="text-[15px] font-extrabold text-ink">فاکتورساز</h1>
+                  <span className="hidden items-center sm:flex">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/images/logo.svg"
+                      alt="لوگوی mrkem"
+                      width={96}
+                      height={48}
+                      className="h-6 w-auto select-none dark:hidden"
+                    />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/images/logo_wordmark_light.svg"
+                      alt=""
+                      aria-hidden="true"
+                      width={96}
+                      height={48}
+                      className="hidden h-6 w-auto select-none dark:block"
+                    />
+                  </span>
                 </div>
-                <p className="hidden truncate text-[10.5px] text-slate-400 sm:block">
+                <p className="hidden truncate text-[10.5px] text-muted sm:block">
                   فاکتور فروش با لوگو، اقلام و خروجی PDF و Word
                 </p>
               </div>
@@ -178,13 +192,14 @@ export default function HomePage() {
             </div>
 
             <div className="flex shrink-0 items-center gap-2">
-              <span className="hidden items-center gap-1.5 text-[10.5px] text-slate-400 lg:flex">
+              <span className="hidden items-center gap-1.5 text-[10.5px] text-muted lg:flex">
                 <span
-                  className={`h-1.5 w-1.5 rounded-full ${savedAt ? "bg-emerald-400" : "bg-slate-300"
+                  className={`h-1.5 w-1.5 rounded-full ${savedAt ? "bg-emerald-400" : "bg-line-strong"
                     }`}
                 />
                 {savedAt ? "ذخیره خودکار" : "پیش‌نویس محلی"}
               </span>
+              <ThemeToggle />
               <button
                 type="button"
                 onClick={handleSample}
@@ -195,7 +210,7 @@ export default function HomePage() {
               <button
                 type="button"
                 onClick={handleReset}
-                className="btn btn-ghost px-3 py-2 text-[12px] text-rose-500 hover:border-rose-200 hover:bg-rose-50"
+                className="btn btn-ghost px-3 py-2 text-[12px] text-rose-500 hover:border-rose-200 hover:bg-rose-50 dark:text-rose-400 dark:hover:border-rose-500/30 dark:hover:bg-rose-500/10"
               >
                 پاک کردن
               </button>
@@ -215,7 +230,7 @@ export default function HomePage() {
             {step === 3 ? <ExportStep data={data} totals={totals} goto={goto} /> : null}
           </div>
 
-          <nav className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white/80 px-4 py-3">
+          <nav className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-line bg-surface/80 px-4 py-3">
             <button
               type="button"
               onClick={() => goto(Math.max(0, step - 1))}
@@ -226,10 +241,10 @@ export default function HomePage() {
             </button>
 
             <div className="order-3 w-full text-center sm:order-2 sm:w-auto">
-              <p className="text-[10.5px] leading-relaxed text-slate-400">
+              <p className="text-[10.5px] leading-relaxed text-muted">
                 {issue ?? "همه چیز آماده است؛ می‌توانید ادامه دهید."}
               </p>
-              <p className="mt-0.5 text-[11px] font-bold tabular-nums text-slate-600">
+              <p className="mt-0.5 text-[11px] font-bold tabular-nums text-ink-soft">
                 {formatNumber(totals.total)} {data.meta.currency}
               </p>
             </div>
@@ -254,7 +269,7 @@ export default function HomePage() {
             )}
           </nav>
 
-          <footer className="mt-8 text-center text-[10.5px] leading-relaxed text-slate-400">
+          <footer className="mt-8 text-center text-[10.5px] leading-relaxed text-muted">
             اطلاعات شما فقط در همین مرورگر ذخیره می‌شود و به سروری ارسال نمی‌گردد.
           </footer>
         </main>
