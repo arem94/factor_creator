@@ -154,11 +154,14 @@ export function SpinnerIcon({ className = "", ...props }: IconProps) {
   );
 }
 
+
 export function ReceiptIcon(props: IconProps) {
   return (
-    <Base {...props}>
-      <path d="M5 3h14v18l-2.3-1.7-2.3 1.7-2.4-1.7L9.6 21 7.3 19.3 5 21z" />
-      <path d="M9 8h6M9 12h6M9 16h3" />
-    </Base>
+    <img
+      src="/images/logo_light.svg"
+      alt="Logo"
+      width={24}
+      height={24}
+    />
   );
 }

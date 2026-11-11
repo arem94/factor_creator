@@ -135,20 +135,20 @@ export function createSampleData(): InvoiceData {
   return {
     ...createEmptyData(),
     seller: {
-      name: "شرکت نمونه تجارت پارس",
+      name: "شرکت نمونه تجارت کیم",
       nationalId: "۱۰۱۰۲۳۴۵۶۷۸",
       phone: "۰۲۱-۸۸۷۷۶۶۵۵",
       address: "تهران، خیابان ولیعصر، برج نگین، طبقه ۱۲، واحد ۳",
-      email: "info@pars-trade.example",
-      website: "www.pars-trade.example",
+      email: "info@mrkem.ir",
+      website: "www.mrkem.ir",
       logo: null,
     },
     buyer: {
-      name: "فروشگاه زنجیره‌ای آرمان",
+      name: "فروشگاه زنجیره‌ای امیر",
       nationalId: "۱۴۰۰۵۶۷۸۹۰۱",
       phone: "۰۹۱۲۳۴۵۶۷۸۹",
-      address: "اصفهان، خیابان چهارباغ بالا، پلاک ۲۴",
-      email: "buyer@arman.example",
+      address: "مشهد، خیابان وکیل آباد، پلاک ۲۴",
+      email: "buyer@mrkem.ir",
     },
     meta: {
       number: "۱۴۰۴-۰۱۲",

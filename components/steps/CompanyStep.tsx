@@ -126,7 +126,7 @@ export function CompanyStep({ data, patchSeller, patchBuyer, patchMeta }: StepPr
               <TextInput
                 value={data.seller.name}
                 onChange={(event) => patchSeller({ name: event.target.value })}
-                placeholder="مثلاً شرکت نمونه تجارت پارس"
+                placeholder="مثلاً شرکت نمونه تجارت کیم"
               />
             </Field>
 

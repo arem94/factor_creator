@@ -161,19 +161,27 @@ export default function HomePage() {
                 <ReceiptIcon className="h-5 w-5" />
               </span>
               <div className="min-w-0">
-                <h1 className="text-[15px] font-extrabold text-slate-900">فاکتورساز</h1>
+                <div className="flex items-center ">
+                  <h1 className="text-[15px] font-extrabold text-slate-900">فاکتورساز</h1>
+                  <img
+                    src="/images/logo.svg"
+                    alt="Logo"
+                    width={90}
+                    height={24}
+                  />
+                </div>
                 <p className="hidden truncate text-[10.5px] text-slate-400 sm:block">
                   فاکتور فروش با لوگو، اقلام و خروجی PDF و Word
                 </p>
               </div>
+
             </div>
 
             <div className="flex shrink-0 items-center gap-2">
               <span className="hidden items-center gap-1.5 text-[10.5px] text-slate-400 lg:flex">
                 <span
-                  className={`h-1.5 w-1.5 rounded-full ${
-                    savedAt ? "bg-emerald-400" : "bg-slate-300"
-                  }`}
+                  className={`h-1.5 w-1.5 rounded-full ${savedAt ? "bg-emerald-400" : "bg-slate-300"
+                    }`}
                 />
                 {savedAt ? "ذخیره خودکار" : "پیش‌نویس محلی"}
               </span>
