@@ -110,9 +110,23 @@ export function NumericInput({
           aria-label={ariaLabel}
           value={text}
           placeholder={placeholder ?? "۰"}
-          onFocus={() => {
+          onFocus={(event) => {
+            const input = event.currentTarget;
             setFocused(true);
-            setText(value ? String(value) : "");
+            // کل متن هم‌زمان انتخاب می‌شود تا تایپ جدید جای مقدار قبلی بنشیند.
+            // برای فوکوس با تب این تنها فرصت انتخاب است؛ برای کلیک ماوس،
+            // onFocus پیش از جای‌گذاری مکان‌نما توسط مرورگر اجرا می‌شود و
+            // سپس onClick انتخاب را دوباره برقرار می‌کند.
+            input.select();
+          }}
+          onClick={(event) => {
+            // کلیک ماوس پس از فوکوس، انتخابِ خودکار را باطل می‌کند؛
+            // در پایان رویداد کلیک (بعد از جای‌گذاری مکان‌نما توسط مرورگر)
+            // کل متن را هم‌زمان انتخاب می‌کنیم تا تایپ فوری هم جای عدد قبلی بنشیند.
+            const input = event.currentTarget;
+            if (document.activeElement === input) {
+              input.select();
+            }
           }}
           onBlur={() => {
             setFocused(false);

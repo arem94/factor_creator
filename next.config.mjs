@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  serverExternalPackages: ["mssql", "tedious"],
+
   webpack: (config) => {
     // jsPDF به صورت اختیاری از canvg برای خروجی SVG استفاده می‌کند؛ ما به آن نیازی نداریم.
     config.resolve.alias = {

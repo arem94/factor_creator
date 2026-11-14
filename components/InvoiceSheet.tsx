@@ -290,7 +290,8 @@ export function InvoiceSheet({ data, totals, id = "invoice-sheet" }: InvoiceShee
               </span>
             ) : null}
           </span>
-          <span className="shrink-0">این فاکتور با فاکتورساز صادر شده است</span>
+          <span className="shrink-0">فاکتور ساز آقای کیم mrkem.ir</span>
+
         </div>
       </div>
     </div>

@@ -18,11 +18,13 @@ interface ExportStepProps {
   data: InvoiceData;
   totals: Totals;
   goto: (step: number) => void;
+  /** پیش از ساخت خروجی، فاکتور ذخیره می‌شود */
+  onBeforeExport?: () => Promise<void>;
 }
 
 type Busy = "pdf" | "word" | null;
 
-export function ExportStep({ data, totals, goto }: ExportStepProps) {
+export function ExportStep({ data, totals, goto, onBeforeExport }: ExportStepProps) {
   const [busy, setBusy] = useState<Busy>(null);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState<string | null>(null);
@@ -40,6 +42,7 @@ export function ExportStep({ data, totals, goto }: ExportStepProps) {
 
     setBusy("pdf");
     try {
+      await onBeforeExport?.();
       const { exportElementToPdf } = await import("@/lib/export-pdf");
       await exportElementToPdf(element, safeFileName(baseName, "pdf"));
       setDone("فایل PDF ساخته و دانلود شد.");
@@ -55,6 +58,7 @@ export function ExportStep({ data, totals, goto }: ExportStepProps) {
     setDone(null);
     setBusy("word");
     try {
+      await onBeforeExport?.();
       const { exportInvoiceDocx } = await import("@/lib/export-docx");
       await exportInvoiceDocx(data, totals, safeFileName(baseName, "docx"));
       setDone("فایل Word ساخته و دانلود شد.");

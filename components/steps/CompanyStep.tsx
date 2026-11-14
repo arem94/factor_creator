@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { CURRENCIES, type Currency } from "@/lib/invoice";
 import { fileToLogo } from "@/lib/logo";
 import { BuildingIcon, ImageIcon, ReceiptIcon } from "@/components/icons";
+import { JalaliDateField } from "@/components/JalaliDateField";
 import {
   Field,
   NumericInput,
@@ -250,25 +251,24 @@ export function CompanyStep({ data, patchSeller, patchBuyer, patchMeta }: StepPr
             />
           </Field>
 
-          <Field label="تاریخ صدور">
-            <TextInput
-              type="date"
+          <div>
+            <span className="label">تاریخ صدور (شمسی)</span>
+            <JalaliDateField
               value={data.meta.date}
-              onChange={(event) => patchMeta({ date: event.target.value })}
-              dir="ltr"
-              className="text-left"
+              onChange={(date) => patchMeta({ date })}
+              ariaLabel="تاریخ صدور فاکتور"
             />
-          </Field>
+          </div>
 
-          <Field label="مهلت پرداخت (اختیاری)">
-            <TextInput
-              type="date"
+          <div>
+            <span className="label">مهلت پرداخت (شمسی)</span>
+            <JalaliDateField
               value={data.meta.dueDate}
-              onChange={(event) => patchMeta({ dueDate: event.target.value })}
-              dir="ltr"
-              className="text-left"
+              onChange={(dueDate) => patchMeta({ dueDate })}
+              ariaLabel="مهلت پرداخت"
+              placeholder="اختیاری"
             />
-          </Field>
+          </div>
         </div>
 
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
